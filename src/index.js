@@ -2,16 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "./i18n"
+import { I18nextProvider } from 'react-i18next';
+import i18next from 'i18next';
+import global_uz from "./locales/uz/translation.json"
+import global_en from "./locales/en/translation.json"
+import global_ru from "./locales/ru/translation.json"
+
+i18next.init({
+  interpolation: { escapeValue: false },
+  lng: "en",
+  resources: {
+    uz: {
+      global: global_uz,
+    },
+    ru: {
+      global: global_ru,
+    },
+    en: {
+      global: global_en,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <I18nextProvider>
     <App />
-  </React.StrictMode>
+  </I18nextProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
